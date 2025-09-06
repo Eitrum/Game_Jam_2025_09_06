@@ -26,11 +26,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 3accc7b4e0a0a51449e3b4d747d75e0c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 80fc889b5878aa944ad585e16b19ba2e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 840fea577267ca745a3c45c4dfc0f915, type: 3}
+        m_Texture: {fileID: 2800000, guid: d3e0b9591946f444b95a4407c1f53017, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -43,6 +43,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _alpha:
+        m_Texture: {fileID: 2800000, guid: e60a89de9d858ff4d95ad9e069de059f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _roughness:
@@ -80,7 +84,9 @@ Material:
     - _SpecularHighlights: 1
     - _UV2: 1
     - _UV4: 1
+    - _bumpScale: 0.1
     m_Colors:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _baseMapTint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

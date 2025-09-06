@@ -8,11 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_eyeIris
-  m_Shader: {fileID: 4800000, guid: 77b1d23274fe7fa4aa9a0106d05a1a8d, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8450d8b2fc19daa408d2c52f2bdbb992, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _UV2_ON
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -29,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 840fea577267ca745a3c45c4dfc0f915, type: 3}
+        m_Texture: {fileID: 2800000, guid: d3e0b9591946f444b95a4407c1f53017, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -75,15 +74,31 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
+    - _Ease: -1
+    - _EaseSecular: 1
     - _EnvironmentReflections: 1
+    - _FresMult: 8
     - _OcclusionStrength: 0.5764706
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 1
+    - _ReceiveShadows: 1
+    - _Smoothness: 0.5764706
     - _SpecularHighlights: 1
-    - _UV2: 1
+    - _UV2: 0
     - _UV4: 0
+    - _baseMapAsColorRamp: 0
+    - _bumpScale: 0.77
+    - _clipThreshold: 0.73
+    - _indirectLight: 0.64
+    - _indirectLightBaseTint: 0.945
+    - _offsetLight: 0.06
+    - _smoothness: 0.92
+    - _specularIntensity: 2.15
+    - _specularSize: 1.05
     m_Colors:
-    - _EmissionColor: {r: 0.609, g: 0.609, b: 0.609, a: 1}
+    - _EmissionColor: {r: 0.95, g: 0, b: 0, a: 1}
+    - _baseMapTint: {r: 1, g: 1, b: 1, a: 0}
+    - _rampColor1: {r: 0, g: 0, b: 0, a: 0}
+    - _rampColor2: {r: 0.682127, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
