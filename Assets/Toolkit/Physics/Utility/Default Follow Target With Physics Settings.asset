@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d2e97cc22ec5a42abc4cdde916118b, type: 3}
+  m_Name: Default Follow Target With Physics Settings
+  m_EditorClassIdentifier: 
+  maxVelocity: 20
+  maxTorque: 720
+  sensitivity: 1
+  prediction: 1
+  shakinessSmoothing: 0.001

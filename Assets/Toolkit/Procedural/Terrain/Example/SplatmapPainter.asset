@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e0dfc25d1d04344ab3e48b52bff83a, type: 3}
+  m_Name: SplatmapPainter
+  m_EditorClassIdentifier: 
+  layerCollection: {fileID: 11400000, guid: 866d72a736cf18a4690137838e1dc92d, type: 2}
+  paintLayers:
+  - layerIndex: 0
+    paintMode: 1
+    rules: []
+  - layerIndex: 1
+    paintMode: 1
+    rules:
+    - mode: 1
+      range:
+        min: 0
+        max: 15
+    - mode: 0
+      range:
+        min: 64
+        max: 150
+  - layerIndex: 2
+    paintMode: 0
+    rules:
+    - mode: 1
+      range:
+        min: 10
+        max: 17
+    - mode: 0
+      range:
+        min: 64
+        max: 150
+  - layerIndex: 4
+    paintMode: 1
+    rules:
+    - mode: 1
+      range:
+        min: 23
+        max: 90
+  - layerIndex: 7
+    paintMode: 1
+    rules:
+    - mode: 0
+      range:
+        min: 58
+        max: 63.5
+    - mode: 1
+      range:
+        min: 0
+        max: 30
+  - layerIndex: 6
+    paintMode: 0
+    rules:
+    - mode: 0
+      range:
+        min: 62
+        max: 66
+    - mode: 1
+      range:
+        min: 0
+        max: 20

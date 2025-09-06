@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c61b596395331c4e985b3e0d3548db8, type: 3}
+  m_Name: ExamineExamplePreset
+  m_EditorClassIdentifier: 
+  examineCustomName: 
+  objectName: Default Cube
+  description: The default cube in Unity is a simple 3D object consisting of six
+    square faces, forming a perfect cube. It is created with a standard material,
+    has no textures, and includes a Mesh Filter, Mesh Renderer, and a Box Collider
+    by default. Its dimensions are 1 unit per side, and it serves as a basic building
+    block for prototyping or creating simple 3D objects.
+  author: -ChatGPT
+  texture: {fileID: 0}
+  sprite: {fileID: 0}
+  prefabToRender: {fileID: 1830648178298011550, guid: 739e4076d8cedee4b964b70153030a96, type: 3}

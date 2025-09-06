@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caaa0a85cbf1b4949b500b1365b2f3c3, type: 3}
+  m_Name: HydraulicDropletErosion
+  m_EditorClassIdentifier: 
+  iterations: 500000
+  maxDropletLifetime: 60
+  initialWaterVolume: 1
+  initialSpeed: 1
+  erosionRadius: 3
+  gravity: 4
+  sedimentCapacityFactor: 5
+  minSedimentCapacity: 0.01
+  erodeSpeed: 0.3
+  depositSpeed: 0.3
+  evaporateSpeed: 0.01
+  inertia: 0.05

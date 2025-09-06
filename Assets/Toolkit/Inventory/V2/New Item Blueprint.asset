@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4253155715964511390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ba161ac994df844902ddbdce370eb8, type: 3}
+  m_Name: Metadata/Default
+  m_EditorClassIdentifier: 
+  itemName: Oathsworn
+  flavorText: The bringer of justice
+  itemType: 1
+--- !u!114 &-2971661472163773079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b847800d620cd4abd3ca04071ccb4b, type: 3}
+  m_Name: Combat/Base Damage
+  m_EditorClassIdentifier: 
+  values:
+  - damageType: 4
+    amount:
+      min: 7
+      max: 8
+  - damageType: 32
+    amount:
+      min: 3
+      max: 4
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759aabf0b90aba749bb637a7eeec4ff9, type: 3}
+  m_Name: New Item Blueprint
+  m_EditorClassIdentifier: 
+  uid: category/item
+  dataBlueprints:
+    scriptables:
+    - {fileID: -4253155715964511390}
+    - {fileID: 3770575301475850868}
+    - {fileID: 2167432641153077616}
+    - {fileID: 2842910599117735122}
+    - {fileID: -2971661472163773079}
+    - {fileID: 2888881745514553540}
+--- !u!114 &2167432641153077616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565dbfcf21ae37c4b947b83c349f5339, type: 3}
+  m_Name: Metadata/Rarity
+  m_EditorClassIdentifier: 
+  value: 4
+--- !u!114 &2842910599117735122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765c71b94faeba340beb9354db1f1b99, type: 3}
+  m_Name: Metadata/Quality
+  m_EditorClassIdentifier: 
+  value: 6
+--- !u!114 &2888881745514553540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6014300488cd66346b586bf62e350109, type: 3}
+  m_Name: Metadata/Stackable
+  m_EditorClassIdentifier: 
+  maxStack: 3
+--- !u!114 &3770575301475850868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28eafb2c36a437545a5dd2b5fde4046d, type: 3}
+  m_Name: Metadata/Durability
+  m_EditorClassIdentifier: 
+  value: 1

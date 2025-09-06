@@ -1,0 +1,64 @@
+#pragma kernel CSMain
+
+struct Chunk
+{
+    uint id;
+    float distance;
+};
+
+StructuredBuffer<float4> _FrustumPlanes;
+RWStructuredBuffer<Chunk> visibleChunks;
+
+float3 _CameraLocation;
+int3 _Position;
+int3 _Size;
+float _ChunkSize;
+float _ChunkOverlap;
+float _NegativeRadius;
+float _MaximumDistance;
+uint _Total;
+
+uint3 IndexToCoord(uint index, uint height, uint depth)
+{
+    uint sliceSize = height * depth;
+    uint x = index / sliceSize;
+    uint remainder = index % sliceSize;
+    uint y = remainder / depth;
+    uint z = remainder % depth;
+    return uint3(x, y, z);
+}
+
+int CoordToIndex(uint x, uint y, uint z, uint height, uint depth)
+{
+    return (x * height * depth) + (y * depth) + (z);
+}
+
+[numthreads(64, 1, 1)]
+void CSMain(uint id : SV_DispatchThreadID)
+{
+    if (id > _Total)
+        return;
+    
+    int3 coord = IndexToCoord(id, _Size.y, _Size.z);
+    float3 center = (_Position + coord) * _ChunkSize;
+    
+    float dist = distance(center, _CameraLocation);
+    if (dist > _MaximumDistance)
+        return;
+    
+    [unroll]
+    for (int i = 0; i < 4; i++) // 5 & 6 is back and front planes. With the distance check we can skip those 2.
+    {
+        float4 plane = _FrustumPlanes[i];
+        float d = dot(plane.xyz, center) + plane.w;
+
+        if (d < _NegativeRadius)
+            return;
+    }
+    
+    Chunk c;
+    c.id = id;
+    c.distance = dist;
+    uint towrite = visibleChunks.IncrementCounter();
+    visibleChunks[towrite] = c;
+}

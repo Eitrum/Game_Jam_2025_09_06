@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc5c23251310d242b3c279649b64e23, type: 3}
+  m_Name: PerlinHeightmap
+  m_EditorClassIdentifier: 
+  randomizeWorldPosition: 2
+  clearExistingHeightmap: 1
+  scale: 512
+  scalePerLayer: 0.8
+  strengthMultiplier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  flatStrengthMuliplier: 200
+  layers:
+  - texture: {fileID: 0}
+    useTexture: 0
+    offsetX: 0
+    offsetY: 0
+    scaleX: 1
+    scaleY: 1
+    rotation: 0
+    strength: 0.5
+  - texture: {fileID: 0}
+    useTexture: 0
+    offsetX: 0
+    offsetY: 0.681
+    scaleX: 0.5
+    scaleY: 0.5
+    rotation: 0
+    strength: 0.5
+  - texture: {fileID: 0}
+    useTexture: 0
+    offsetX: 0.289
+    offsetY: 0.451
+    scaleX: 1
+    scaleY: 1
+    rotation: 0
+    strength: 0.12
+  - texture: {fileID: 0}
+    useTexture: 0
+    offsetX: 0
+    offsetY: 0.681
+    scaleX: 1.58
+    scaleY: 1.58
+    rotation: 0
+    strength: 0.1
+  - texture: {fileID: 0}
+    useTexture: 0
+    offsetX: 0.32
+    offsetY: 0.566
+    scaleX: 10
+    scaleY: 10
+    rotation: 0
+    strength: 0.005
+  - texture: {fileID: 0}
+    useTexture: 0
+    offsetX: 0.32
+    offsetY: 0.566
+    scaleX: 5
+    scaleY: 5
+    rotation: 0
+    strength: 0.005

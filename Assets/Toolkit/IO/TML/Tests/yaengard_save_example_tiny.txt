@@ -1,0 +1,15 @@
+<root version="0.2.04.6">
+	<party level="14" hardcore="False" deaths="1">
+		<resources artifact="1" organics="1" supplies="7" valuables="8"/>
+		<unlocks unlockedClassAbilities="True" unlockedSecretPunch="True"/>
+		<might>
+			<might_1_initiative/>
+			<might_2_health/>
+			<might_3_damage/>
+			<might_4_frostStorm/>
+			<might_5_dodge/>
+			<might_6_dodge/>
+			<might_7_threatSummon/>
+		</might>
+	</party>
+</root>

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2adb00f8e46976149b38a143547acadc, type: 3}
+  m_Name: EnumStringBindings (Example)
+  m_EditorClassIdentifier: 
+  key: description
+  enumType: Toolkit.Health.DamageTypeDnD
+  values:
+  - Key: None
+    Value: No damage type associated
+  - Key: Bludgeoning
+    Value: Smackin them with large objects
+  - Key: Piercing
+    Value: Stabby stabby
+  - Key: Slashing
+    Value: Slicing them into 2
+  - Key: Acid
+    Value: Doesn't hurt the vial, but damn burns our victims
+  - Key: Cold
+    Value: Brrrr
+  - Key: Fire
+    Value: Ouch ouch ouch
+  - Key: Force
+    Value: Fuk hit me!?
+  - Key: Lightning
+    Value: Can't be hit twice
+  - Key: Necrotic
+    Value: Flesh gone black! Eew!
+  - Key: Poison
+    Value: Feeling a bit ill
+  - Key: Psychic
+    Value: Stop showing me the blue haired lib woman!
+  - Key: Radiant
+    Value: Smite! Smite! Smite!
+  - Key: Thunder
+    Value: ACDC - Thunderstruck!

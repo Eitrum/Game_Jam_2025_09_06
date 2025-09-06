@@ -1,0 +1,295 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7470323836540149845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbd702344d15a348bc175e8d7f69dcc, type: 3}
+  m_Name: Clear Render Targets
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 629
+  clearDepth: 1
+  clearColor: 1
+  backgroundColor:
+  - {r: 0.3207547, g: 0.21333215, b: 0.21333215, a: 0}
+  depth: 1
+  clearStencil: 1
+  stencil: 0
+--- !u!114 &-6981020305791711455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f953abd05826eff479ade75c7cd61bde, type: 3}
+  m_Name: SetTargetRendererOutput
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 541
+  depthTexture: _Depth
+--- !u!114 &-1958102331001982623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c39fc25c446dd48bc383d8d53f5ea7, type: 3}
+  m_Name: AddTextureModule
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 489
+  textures:
+  - Name: _RT0
+    UseCameraSize: 1
+    CustomSize: {x: 0, y: 0}
+    TextureFormat: 0
+    Depth: 0
+    RTReadWrite: 0
+  - Name: _RT1
+    UseCameraSize: 1
+    CustomSize: {x: 0, y: 0}
+    TextureFormat: 0
+    Depth: 0
+    RTReadWrite: 0
+  - Name: _RT2
+    UseCameraSize: 1
+    CustomSize: {x: 0, y: 0}
+    TextureFormat: 0
+    Depth: 0
+    RTReadWrite: 0
+  - Name: _Depth
+    UseCameraSize: 1
+    CustomSize: {x: 0, y: 0}
+    TextureFormat: 1
+    Depth: 2
+    RTReadWrite: 0
+  renderTextures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &-358627191926331089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9758816101a8884da25fc5614e2d0a7, type: 3}
+  m_Name: DrawUIModule
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 1142
+  cullResultsKey: cullResults
+  shaderTags:
+  - SRPDefaultUnlit
+--- !u!114 &-300839733532932587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b8b441ab0ae9b4e8ab50ae2d5e24d8, type: 3}
+  m_Name: SetTargetRendererDeferred
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 17890
+  colorTextures:
+  - _RT0
+  - _RT1
+  - _RT2
+  depthTexture: _Depth
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf8f076dc5784f4b9e3fc50dbc92481, type: 3}
+  m_Name: MRPAsset
+  m_EditorClassIdentifier: 
+  modules:
+    scriptables:
+    - {fileID: 3883090166827871372}
+--- !u!114 &1512435898521511779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094be25097e0b454fa02e8a8347cb469, type: 3}
+  m_Name: DeferredCompositeModule
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 1482
+  compositeMaterial: Hidden/CompositeMRTs
+  mappings:
+  - MRPTexture: _RT0
+    MaterialVariableName: _RT0
+  - MRPTexture: _RT1
+    MaterialVariableName: _RT1
+  - MRPTexture: _RT2
+    MaterialVariableName: _RT2
+--- !u!114 &2405242375607798001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ce23cafd5cf6a42a6de122d625a1b5, type: 3}
+  m_Name: TestDrawDefaultUnity
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 1258
+  cullResultsKey: cullResults
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  sortingCriteria: 2
+  renderQueueMode: 1
+  renderQueueRange:
+    min: 0
+    max: 5000
+  shaderTags:
+  - SRPDefaultUnlit
+  - UniversalForward
+  - ForwardBase
+  - ForwardLit
+  - Unlit
+  - Diffuse
+--- !u!114 &3272967723161242162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8784895cf4efd7945b3c945a0f3b066e, type: 3}
+  m_Name: Camera/Setup Camera
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 1776
+  matrices: 1
+  cameraLocation: 1
+  projectionParams: 1
+  screenParams: 1
+  setupUnityVariables: 1
+  setupDefaultUnity: 1
+--- !u!114 &3458294292546679232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b699c60abe2b940b4876c572f22bb3, type: 3}
+  m_Name: Unity/Light
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 1026
+  cullResultsKey: cullResults
+--- !u!114 &3883090166827871372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a65f3ddb77743041b8558db545feae0, type: 3}
+  m_Name: Draw Specific Camera
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 64998
+  targetIdentifier: Main Camera
+  modules:
+    scriptables:
+    - {fileID: 3272967723161242162}
+    - {fileID: 6954518735768978913}
+    - {fileID: 5837655013149681432}
+    - {fileID: -1958102331001982623}
+    - {fileID: -300839733532932587}
+    - {fileID: -7470323836540149845}
+    - {fileID: 2405242375607798001}
+    - {fileID: 1512435898521511779}
+    - {fileID: -6981020305791711455}
+    - {fileID: -358627191926331089}
+    - {fileID: 3458294292546679232}
+--- !u!114 &5837655013149681432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6755663cf3442fa49b568defc400e598, type: 3}
+  m_Name: Unity/Camera Cull
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 1266
+  cullParametersKey: cullParameters
+  cullResultsKey: cullResults
+--- !u!114 &6954518735768978913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c248d023351d8dd4db8bbad4873df14b, type: 3}
+  m_Name: GPUChunkCulling
+  m_EditorClassIdentifier: 
+  disable: 0
+  debug: 0
+  ticks: 34820
+  chunkSize: 64
+  chunkOverlap: 4
+  doubleBuffer: 1
+  sortByDistance: 1
+  cullingResultsKey: chunkCullResults

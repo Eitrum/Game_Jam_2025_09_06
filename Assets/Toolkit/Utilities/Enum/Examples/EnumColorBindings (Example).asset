@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657b631b60c7bff48b1917f9fa88bab7, type: 3}
+  m_Name: EnumColorBindings (Example)
+  m_EditorClassIdentifier: 
+  key: displayColor
+  enumType: Toolkit.Health.DamageTypeDnD
+  values:
+  - Key: None
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Bludgeoning
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Piercing
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Slashing
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Acid
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Cold
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Fire
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Force
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Lightning
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Necrotic
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Poison
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Psychic
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Radiant
+    Value: {r: 1, g: 1, b: 1, a: 1}
+  - Key: Thunder
+    Value: {r: 1, g: 1, b: 1, a: 1}

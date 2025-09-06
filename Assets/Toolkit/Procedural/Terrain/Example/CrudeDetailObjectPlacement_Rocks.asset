@@ -1,0 +1,1000 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bab69efc0e4be04e969b9a5044edd53, type: 3}
+  m_Name: CrudeDetailObjectPlacement_Rocks
+  m_EditorClassIdentifier: 
+  detailCollection: {fileID: 11400000, guid: deed35d1f6c11c04f8aa75d2fc7b2e28, type: 2}
+  layers:
+  - detailCollectionIndex: 0
+    detailRadius: 10
+    threshold: 0.05
+    amount:
+      heightRange:
+        min: 64
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 45
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 1
+      splatId: 0
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 1
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4
+  - detailCollectionIndex: 0
+    detailRadius: 10
+    threshold: 0.05
+    amount:
+      heightRange:
+        min: 64
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 45
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 1
+      splatId: 4
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 1
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4
+  - detailCollectionIndex: 4
+    detailRadius: 30
+    threshold: 0.2
+    amount:
+      heightRange:
+        min: 64
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 45
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 1
+      splatId: 0
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 0
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4
+  - detailCollectionIndex: 4
+    detailRadius: 30
+    threshold: 0.2
+    amount:
+      heightRange:
+        min: 64
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 45
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 1
+      splatId: 4
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 0
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4
+  - detailCollectionIndex: 8
+    detailRadius: 90
+    threshold: 0.2
+    amount:
+      heightRange:
+        min: 60
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 45
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 1
+      splatId: 0
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 0
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4
+  - detailCollectionIndex: 8
+    detailRadius: 90
+    threshold: 0.2
+    amount:
+      heightRange:
+        min: 60
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 45
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 1
+      splatId: 4
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 0
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4
+  - detailCollectionIndex: 7
+    detailRadius: 90
+    threshold: 0.2
+    amount:
+      heightRange:
+        min: 60
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 90
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 0
+      splatId: 4
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 0
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4
+  - detailCollectionIndex: 5
+    detailRadius: 70
+    threshold: 0.2
+    amount:
+      heightRange:
+        min: 60
+        max: 200
+      heightModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      slopeRange:
+        min: 0
+        max: 90
+      slopeModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.6
+          value: 1
+          inSlope: 0.11988635
+          outSlope: 0.11988635
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.09031206
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -2.5000002
+          outSlope: -2.5000002
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      useSplatmap: 0
+      splatId: 4
+      splatThreshold:
+        min: 0
+        max: 1
+      splatModifier:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    useCluster: 1
+    clusterStrength:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0009841919
+        value: 0.01763916
+        inSlope: 0.6417076
+        outSlope: 0.6417076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.05216438
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2.908947
+        outSlope: 2.908947
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.023645341
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    clusterRadius: 2
+    clusterSize: 4

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fbc853c34e2841439cd9e0e6bf3dcef, type: 3}
+  m_Name: InteractableNames
+  m_EditorClassIdentifier: 
+  recordNewEntriesInEditor: 1
+  entries:
+  - type: Torch
+    scriptGuid: e99dbb140cd575749bcd7cdf387db0c1
+    name: Toggle
+    description: 
+    order: 0
+  - type: Saturn.Titan.Gathering.Gatherable
+    scriptGuid: 1c6cde697234cb74c8fd4699d44aa56e
+    name: Mine
+    description: 
+    order: 0

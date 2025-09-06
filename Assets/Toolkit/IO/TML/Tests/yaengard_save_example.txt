@@ -1,0 +1,342 @@
+<root version="0.2.04.6">
+	<party level="14" hardcore="False" deaths="1">
+		<resources artifact="1" organics="1" supplies="7" valuables="8"/>
+		<unlocks unlockedClassAbilities="True" unlockedSecretPunch="True"/>
+		<stage might="7" act="Act_2" encountersWithoutRest="6">
+			<might>
+				<might_1_initiative/>
+				<might_2_health/>
+				<might_3_damage/>
+				<might_4_frostStorm/>
+				<might_5_dodge/>
+				<might_6_dodge/>
+				<might_7_threatSummon/>
+			</might>
+		</stage>
+	</party>
+	<quest startingQuests="2" prerequisite="4" endSequence="2" hasStartedEndSequence="True" loadInnNext="False"/>
+	<questbook/>
+	<p0 name="Jeffry Smart " experience="2" stamina="3" destiny="3" unusedAttributes="0" health="295.7929">
+		<skin sex="Male" seed="879004774"/>
+		<equipment>
+			<item_0 slot="Chest" item="ArmorGeneratorBody_AncMelee_T2">
+				<generation level="9" seed="1140951497"/>
+				<armor armor="4.4" dodge="0" health="61" damage="0.17" dot="0" creativity="0" critChance="0" critDamage="0"/>
+			</item_0>
+			<item_1 slot="Helmet" item="ArmorGeneratorHelmet_T2_Heavy">
+				<generation level="10" seed="576020410"/>
+				<armor armor="4.1" dodge="0" health="57" damage="0" dot="0" creativity="0" critChance="0" critDamage="0"/>
+			</item_1>
+			<item_2 slot="Main_Hand" item="wepGen_A2_Wand">
+				<generation level="11" seed="229888800"/>
+				<weapon dmgMin="27" dmgMax="36"/>
+				<abilities>
+					<ability_0 fileName="wand_r_02_conflagrate"/>
+				</abilities>
+			</item_2>
+			<item_3 slot="Off_Hand" item="wepGen_A2_Shield">
+				<generation level="12" seed="1019102468"/>
+				<weapon dmgMin="25" dmgMax="34"/>
+				<abilities>
+					<ability_0 fileName="shield_r_04_firewalk"/>
+					<ability_1 fileName="shield_c_02_hardRestrict"/>
+					<ability_2 fileName="shield_u_02_protectThroughPressure"/>
+				</abilities>
+			</item_3>
+			<item_4 slot="Trinket" item="trinket17_">
+				<generation level="8" seed="910796215"/>
+				<perks>
+					<perk_0 perkFile="trinketPerk_P_destinyOnCG" perkName="<color=#c4c1b9>Trinket:</color> Destined for Conquest"/>
+					<perk_1 perkFile="trinketPerk_N_rootToStunOnHit" perkName="<color=#c4c1b9>Trinket:</color> Heartwatch Medicine"/>
+				</perks>
+			</item_4>
+			<item_6 slot="Legs" item="ArmorGeneratorLegs_StrAxe_T2">
+				<generation level="10" seed="1238793693"/>
+				<armor armor="0" dodge="0" health="67" damage="0" dot="0.23" creativity="0" critChance="0" critDamage="0"/>
+			</item_6>
+			<item_7 slot="Consumable" item="consumableItem_armor">
+				<abilities>
+					<ability_0 fileName="consumable_armor"/>
+				</abilities>
+			</item_7>
+		</equipment>
+		<traits>
+			<LawfulChaotic value="9"/>
+			<HonestDecietful value="1"/>
+			<SocialLone_Wolf value="1"/>
+			<InstigatorCalculating value="0"/>
+			<GoodRuthless value="0"/>
+			<NobleSelf_Serving value="0"/>
+			<FaithfulPagan value="0"/>
+			<TrustingSuspicious value="0"/>
+			<SpiritualMaterialistic value="0"/>
+			<TraditionalPragmatic value="-1"/>
+			<FieryCold value="-5"/>
+			<PoliteBlunt value="0"/>
+			<CasualIntense value="0"/>
+			<HumanDemonic value="0"/>
+			<SaneInsane value="0"/>
+			<LuckyUnlucky value="-2"/>
+		</traits>
+		<attributes>
+			<Power value="[0, 1, 1]"/>
+			<Toughness value="[10, 1, 1]"/>
+			<Agility value="[0, 1, 1]"/>
+			<Ancestry value="[2, 1, 1]"/>
+			<Intelligence value="[8, 1, 1]"/>
+			<Talent value="[6, 1, 1]"/>
+		</attributes>
+		<stats>
+			<Critical_Strike_Chance value="[0, 1, 1]"/>
+			<Critical_Strike_Damage value="[0, 1, 1]"/>
+			<Melee_Mod value="[0.17, 1, 1]"/>
+			<Ranged_Mod value="[0.17, 1, 1]"/>
+			<Dot_Mod value="[0.23, 1, 1]"/>
+			<Damage_Mod value="[1, 1, 1]"/>
+			<Max_Health value="[185, 1, 1]"/>
+			<Health_Regen_Percentage value="[0, 1, 1]"/>
+			<Health_Regen_Flat value="[0, 1, 1]"/>
+			<Initiative value="[0, 1, 1]"/>
+			<Accuracy value="[1, 1, 1]"/>
+			<Dodge value="[0, 1, 1]"/>
+			<Resistance value="[0, 1, 1]"/>
+			<Armor value="[8.5, 1, 1]"/>
+			<Fortitude value="[0, 0, 0]"/>
+			<Creativity value="[0, 1, 1]"/>
+		</stats>
+		<perks>
+			<perk_0 perkFile="BackgroundPerk_ 11"/>
+			<perk_1 perkFile="Cold_Social_1"/>
+			<perk_2 perkFile="Lawful_Combat_1"/>
+			<perk_3 perkFile="Cold_Stat_1"/>
+			<perk_4 perkFile="Cold_Combat_1"/>
+			<perk_5 perkFile="Lawful_Social_2"/>
+			<perk_6 perkFile="Lawful_Stat_2"/>
+			<perk_7 perkFile="Lawful_Combat_2"/>
+			<perk_8 perkFile="trinketPerk_P_destinyOnCG"/>
+			<perk_9 perkFile="trinketPerk_N_rootToStunOnHit"/>
+			<perk_10 perkFile="Unlucky_Social_1"/>
+		</perks>
+	</p0>
+	<p1 name="Cecily Barleyscar" experience="2" stamina="2" destiny="0" unusedAttributes="0" health="459.3318">
+		<skin sex="Female" seed="1531635030"/>
+		<equipment>
+			<item_0 slot="Chest" item="ArmorGeneratorBody_TghDOT_T2">
+				<generation level="9" seed="1142577099"/>
+				<armor armor="5" dodge="0" health="48" damage="0" dot="0.17" creativity="0" critChance="0" critDamage="0"/>
+			</item_0>
+			<item_1 slot="Helmet" item="ArmorGeneratorHelmet_T2_DOT">
+				<generation level="14" seed="902210885"/>
+				<armor armor="0" dodge="0" health="67" damage="0" dot="0.31" creativity="0" critChance="0" critDamage="0"/>
+			</item_1>
+			<item_2 slot="Main_Hand" item="wepGen_A2_Axe">
+				<generation level="11" seed="329404755"/>
+				<weapon dmgMin="27" dmgMax="36"/>
+				<abilities>
+					<ability_0 fileName="axe_u_03_curseStorm"/>
+					<ability_1 fileName="axe_r_03_infernoWithin"/>
+				</abilities>
+			</item_2>
+			<item_3 slot="Off_Hand" item="wepGen_A2_Heirloom">
+				<generation level="12" seed="1287458499"/>
+				<weapon dmgMin="27" dmgMax="40"/>
+				<abilities>
+					<ability_0 fileName="heirloom_c_01_ancestralCurse"/>
+					<ability_1 fileName="heirloom_c_02_burnSpirit"/>
+				</abilities>
+			</item_3>
+			<item_4 slot="Trinket" item="trinketT0_5">
+				<generation level="2" seed="1713397871"/>
+				<perks>
+					<perk_0 perkFile="trinketPerk_P_T0_TAL" perkName="<color=#c4c1b9>Trinket:</color> Strength of Mind"/>
+					<perk_1 perkFile="trinketPerk_N_T0_LessTrueMastery" perkName="<color=#c4c1b9>Trinket:</color> Out of Practice"/>
+				</perks>
+			</item_4>
+			<item_6 slot="Legs" item="ArmorGeneratorLegs_TghDOT_T2">
+				<generation level="10" seed="124913963"/>
+				<armor armor="4.1" dodge="0" health="58" damage="0" dot="0.23" creativity="0" critChance="0" critDamage="0"/>
+			</item_6>
+			<item_7 slot="Consumable" item="consumableItem_health">
+				<abilities>
+					<ability_0 fileName="consumable_healing"/>
+				</abilities>
+			</item_7>
+		</equipment>
+		<traits>
+			<LawfulChaotic value="-5"/>
+			<HonestDecietful value="0"/>
+			<SocialLone_Wolf value="4"/>
+			<InstigatorCalculating value="-4"/>
+			<GoodRuthless value="2"/>
+			<NobleSelf_Serving value="3"/>
+			<FaithfulPagan value="2"/>
+			<TrustingSuspicious value="3"/>
+			<SpiritualMaterialistic value="5"/>
+			<TraditionalPragmatic value="-1"/>
+			<FieryCold value="6"/>
+			<PoliteBlunt value="0"/>
+			<CasualIntense value="0"/>
+			<HumanDemonic value="0"/>
+			<SaneInsane value="0"/>
+			<LuckyUnlucky value="0"/>
+		</traits>
+		<attributes>
+			<Power value="[0, 1, 1]"/>
+			<Toughness value="[3, 1, 1]"/>
+			<Agility value="[0, 1, 1]"/>
+			<Ancestry value="[14, 1, 1]"/>
+			<Intelligence value="[3, 1, 1]"/>
+			<Talent value="[6, 1, 1]"/>
+		</attributes>
+		<stats>
+			<Critical_Strike_Chance value="[0, 1, 1]"/>
+			<Critical_Strike_Damage value="[0, 1, 1]"/>
+			<Melee_Mod value="[0, 1, 1]"/>
+			<Ranged_Mod value="[0, 1, 1]"/>
+			<Dot_Mod value="[0.71, 1, 1]"/>
+			<Damage_Mod value="[0.95, 1, 1]"/>
+			<Max_Health value="[173, 1, 1]"/>
+			<Health_Regen_Percentage value="[0, 1, 1]"/>
+			<Health_Regen_Flat value="[0, 1, 1]"/>
+			<Initiative value="[0, 1, 1]"/>
+			<Accuracy value="[1, 1, 1]"/>
+			<Dodge value="[0, 1, 1]"/>
+			<Resistance value="[0, 1, 1]"/>
+			<Armor value="[9.1, 1, 1]"/>
+			<Fortitude value="[0, 0, 0]"/>
+			<Creativity value="[0.12, 1, 1]"/>
+		</stats>
+		<perks>
+			<perk_0 perkFile="BackgroundPerk_ 17"/>
+			<perk_1 perkFile="Faithful_Social_1"/>
+			<perk_2 perkFile="Chaotic_Social_1"/>
+			<perk_3 perkFile="Social_Social_1"/>
+			<perk_4 perkFile="MQPerk_BlessingOfPrae"/>
+			<perk_5 perkFile="Spiritual_Social_1"/>
+			<perk_6 perkFile="Chaotic_Stat_1"/>
+			<perk_7 perkFile="Fiery_Stat_1"/>
+			<perk_8 perkFile="Calculating_Social_1"/>
+			<perk_9 perkFile="Spiritual_Stat_1"/>
+			<perk_10 perkFile="Spiritual_Combat_1"/>
+			<perk_11 perkFile="trinketPerk_P_T0_TAL"/>
+			<perk_12 perkFile="trinketPerk_N_T0_LessTrueMastery"/>
+			<perk_13 perkFile="Noble_Social_1"/>
+			<perk_14 perkFile="Chaotic_Combat_1"/>
+			<perk_15 perkFile="Good_Social_1"/>
+			<perk_16 perkFile="Fiery_Combat_1"/>
+			<perk_17 perkFile="Trusting_Social_1"/>
+			<perk_18 perkFile="Social_Stat_1"/>
+			<perk_19 perkFile="Fiery_Social_2"/>
+			<perk_20 perkFile="Trusting_Stat_1"/>
+			<perk_21 perkFile="Noble_Stat_1"/>
+			<perk_22 perkFile="Calculating_Stat_1"/>
+		</perks>
+	</p1>
+	<p2 name="Marina Moonbelly" experience="2" stamina="2" destiny="1" unusedAttributes="0" health="1">
+		<skin sex="Female" seed="1817119376"/>
+		<equipment>
+			<item_0 slot="Chest" item="ArmorGeneratorBody_IntNuke_T2">
+				<generation level="12" seed="951426419"/>
+				<armor armor="0" dodge="0.1094617" health="0" damage="0" dot="0" creativity="0" critChance="0.06924326" critDamage="0"/>
+			</item_0>
+			<item_1 slot="Helmet" item="ArmorGeneratorHelmet_T2_Melee">
+				<generation level="13" seed="877271520"/>
+				<armor armor="5.3" dodge="0" health="0" damage="0.27" dot="0" creativity="0" critChance="0" critDamage="0"/>
+			</item_1>
+			<item_2 slot="Main_Hand" item="wepGen_A3_Wand_Obelisk">
+				<generation level="13" seed="1444055068"/>
+				<weapon dmgMin="32" dmgMax="41"/>
+				<abilities>
+					<ability_0 fileName="stormWand_r_02_channelTheTempest"/>
+					<ability_1 fileName="wand_e_02_graspOfImmolation"/>
+					<ability_2 fileName="wand_r_04_theoryOfControl"/>
+				</abilities>
+			</item_2>
+			<item_3 slot="Off_Hand" item="wepGen_A2_Artistry">
+				<generation level="10" seed="1800498472"/>
+				<weapon dmgMin="22" dmgMax="31"/>
+				<abilities>
+					<ability_0 fileName="artistry_u_03_changingWinds"/>
+					<ability_1 fileName="artistry_c_03_flashbind"/>
+				</abilities>
+			</item_3>
+			<item_4 slot="Trinket" item="trinket01_C">
+				<generation level="13" seed="1457900686"/>
+				<perks>
+					<perk_0 perkFile="trinketPerk_P_dashCauseDodge" perkName="<color=#c4c1b9>Trinket:</color> Untouchable"/>
+					<perk_1 perkFile="trinketPerk_N_accuracyDown" perkName="<color=#c4c1b9>Trinket:</color> Unbeatable Opposition"/>
+				</perks>
+			</item_4>
+			<item_6 slot="Legs" item="ArmorGeneratorLegs_AncRange_T2">
+				<generation level="12" seed="1913656256"/>
+				<armor armor="5.9" dodge="0.07623169" health="0" damage="0" dot="0" creativity="0.25" critChance="0" critDamage="0"/>
+			</item_6>
+			<item_7 slot="Consumable" item="consumableItem_anti_burn">
+				<abilities>
+					<ability_0 fileName="consumable_anti_burn"/>
+				</abilities>
+			</item_7>
+		</equipment>
+		<traits>
+			<LawfulChaotic value="0"/>
+			<HonestDecietful value="-2"/>
+			<SocialLone_Wolf value="-2"/>
+			<InstigatorCalculating value="4"/>
+			<GoodRuthless value="-3"/>
+			<NobleSelf_Serving value="-4"/>
+			<FaithfulPagan value="-1"/>
+			<TrustingSuspicious value="0"/>
+			<SpiritualMaterialistic value="-1"/>
+			<TraditionalPragmatic value="-2"/>
+			<FieryCold value="-2"/>
+			<PoliteBlunt value="0"/>
+			<CasualIntense value="0"/>
+			<HumanDemonic value="0"/>
+			<SaneInsane value="0"/>
+			<LuckyUnlucky value="0"/>
+		</traits>
+		<attributes>
+			<Power value="[4, 1, 1]"/>
+			<Toughness value="[0, 1, 1]"/>
+			<Agility value="[18, 1, 1]"/>
+			<Ancestry value="[0, 1, 1]"/>
+			<Intelligence value="[2, 1, 1]"/>
+			<Talent value="[2, 1, 1]"/>
+		</attributes>
+		<stats>
+			<Critical_Strike_Chance value="[0.06924326, 1, 1]"/>
+			<Critical_Strike_Damage value="[0, 1, 1]"/>
+			<Melee_Mod value="[0.27, 1, 1]"/>
+			<Ranged_Mod value="[0.27, 1, 1]"/>
+			<Dot_Mod value="[0, 1, 1]"/>
+			<Damage_Mod value="[1, 1, 1]"/>
+			<Max_Health value="[0, 1, 1]"/>
+			<Health_Regen_Percentage value="[0, 1, 1]"/>
+			<Health_Regen_Flat value="[0, 1, 1]"/>
+			<Initiative value="[0, 1, 1]"/>
+			<Accuracy value="[1, 1, 1]"/>
+			<Dodge value="[0.2356934, 1, 1]"/>
+			<Resistance value="[0, 1, 1]"/>
+			<Armor value="[11.2, 1, 1]"/>
+			<Fortitude value="[0, 0, 0]"/>
+			<Creativity value="[0.25, 1, 1]"/>
+		</stats>
+		<perks>
+			<perk_0 perkFile="BackgroundPerk_ 7"/>
+			<perk_1 perkFile="Cold_Social_1"/>
+			<perk_2 perkFile="Instigator_Social_1"/>
+			<perk_3 perkFile="SelfServing_Social_1"/>
+			<perk_4 perkFile="Deceitful_Social_1"/>
+			<perk_5 perkFile="SelfServing_Stat_1"/>
+			<perk_6 perkFile="Pragmatic_Social_1"/>
+			<perk_7 perkFile="Instigator_Stat_1"/>
+			<perk_8 perkFile="Ruthless_Social_1"/>
+			<perk_9 perkFile="Ruthless_Stat_1"/>
+			<perk_10 perkFile="libraryPerk_SCh_imperial"/>
+			<perk_11 perkFile="libraryPerk_SCh_accursed2"/>
+			<perk_12 perkFile="LoneWolf_Social_1"/>
+			<perk_13 perkFile="trinketPerk_P_dashCauseDodge"/>
+			<perk_14 perkFile="trinketPerk_N_accuracyDown"/>
+		</perks>
+	</p2>
+</root>

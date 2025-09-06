@@ -1,0 +1,6 @@
+
+Fast Reflection Project.
+A way to write/read to TML.
+
+Source:
+https://meetemq.com/2023/01/14/using-pointers-in-c-unity/
