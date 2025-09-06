@@ -1,5 +1,6 @@
 using UnityEngine;
 using Toolkit;
+using Toolkit.Audio;
 
 namespace Game {
     public class Player : MonoBehaviour {
@@ -20,6 +21,8 @@ namespace Game {
         [SerializeField] private float holdDuration = 0.5f;
         [SerializeField] private float jumpHoldAcceleration = 4f;
         [SerializeField] private float fallAcceleration = 3f;
+        [SerializeField] private AudioPlayer jumpSound;
+        [SerializeField] private AudioPlayer landSound;
 
         [Header("Skin Orientation")]
         [SerializeField] private float rotationSpeed = 30;
@@ -35,6 +38,7 @@ namespace Game {
         private float timeSinceJumped = 0f;
         private bool didStartJump = false;
         private bool sprinting;
+        private float airbornTime;
 
         private Direction attackDirection = Direction.Right;
 
@@ -42,7 +46,7 @@ namespace Game {
 
         private void Awake() {
             body = GetComponent<Rigidbody>();
-            body.constraints = RigidbodyConstraints.FreezeRotation;
+           // body.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
         private void Update() {
@@ -64,6 +68,8 @@ namespace Game {
                     timeSinceJumped = 0f;
                     body.AddForce(new Vector3(inputHorizontal * CalculatedSpeed * horizontalJumpMultiplier, jumpStrength, 0), ForceMode.VelocityChange);
                     didStartJump = true;
+                    if(jumpSound)
+                        jumpSound.PlayAt(transform.position);
                 }
 
                 var currentXVel = body.linearVelocity.x;
@@ -77,6 +83,12 @@ namespace Game {
                 }
                 else
                     body.AddForce(new Vector3((targetXVel - currentXVel) * acceleration, 0, 0), ForceMode.Acceleration);
+                if(airbornTime > 0.1f) {
+                    if(landSound)
+                        landSound.PlayAt(transform.position);
+                }
+                airbornTime = 0f;
+
             }
             else {
                 if(!didStartJump || (timeSinceJumped > holdDuration)) {
@@ -90,6 +102,7 @@ namespace Game {
                 var slidProtection = Mathf.Clamp01(currentSpeed * 20f + 0.1f);
 
                 body.AddForce(new Vector3((targetXVel - currentXVel) * acceleration * slidProtection, 0, 0), ForceMode.Acceleration);
+                airbornTime += Time.deltaTime;
             }
             if(timeSinceJumped < holdDuration) {
                 if(wantToJump && didStartJump)
@@ -97,19 +110,25 @@ namespace Game {
 
             }
 
-            if(body.linearVelocity.x > 0.05f) {
+            if(body.linearVelocity.x > 0.1f) {
                 skinRotation.localRotation = Quaternion.Slerp(skinRotation.localRotation, Quaternion.Euler(0, 90, 0), Time.fixedDeltaTime * rotationSpeed);
                 attackDirection = Direction.Right;
             }
-            else if(body.linearVelocity.x < -0.05) {
+            else if(body.linearVelocity.x < -0.1f) {
                 skinRotation.localRotation = Quaternion.Slerp(skinRotation.localRotation, Quaternion.Euler(0, -90, 0), Time.fixedDeltaTime * rotationSpeed);
                 attackDirection = Direction.Left;
             }
-            else if(isGrounded) {
+            else if(isGrounded && attackDirection == Direction.None) {
                 skinRotation.localRotation = Quaternion.Slerp(skinRotation.localRotation, Quaternion.Euler(0, 180, 0), Time.fixedDeltaTime * rotationSpeed);
-                attackDirection = Direction.None;
+                //attackDirection = Direction.None;
             }
             //body.linearVelocity = new Vector3(targetXVel, body.linearVelocity.y);
+        }
+
+        [ContextMenu("ResetRotation")]
+        public void ResetRotation() {
+            //skinRotation.localRotation = Quaternion.Slerp(skinRotation.localRotation, Quaternion.Euler(0, 180, 0), Time.fixedDeltaTime * rotationSpeed);
+            attackDirection = Direction.None;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Toolkit.Health {
     public class Health : MonoBehaviour, IHealth, IDamageEvent, IHealEvent, IReadOnlyHealth {
         #region Variables
 
-        [SerializeField] private Stat maxHealth = new Stat(100, 1, 1);
+        [SerializeField] private Stat maxHealth = new Stat(100, 0, 0);
         [SerializeField] private float current = 0f;
 
         private DeterministicDelegates<PreDamageCallback> onPreDamage = new DeterministicDelegates<PreDamageCallback>();
