@@ -1,6 +1,7 @@
 using UnityEngine;
 using Toolkit;
 using Toolkit.Audio;
+using Toolkit.Health;
 
 namespace Game {
     public class Player : MonoBehaviour {
@@ -39,6 +40,8 @@ namespace Game {
         private bool didStartJump = false;
         private bool sprinting;
         private float airbornTime;
+        private float uncontrollable;
+        private IHealth health;
 
         private Direction attackDirection = Direction.Right;
 
@@ -46,7 +49,15 @@ namespace Game {
 
         private void Awake() {
             body = GetComponent<Rigidbody>();
+            health = GetComponent<IHealth>();
+            health.OnHealthChanged += OnHealthChanged;
            // body.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+
+        private void OnHealthChanged(IHealth source, float oldHealth, float newHealth) {
+            if(newHealth > oldHealth)
+                return;
+            uncontrollable = 0.1f;
         }
 
         private void Update() {
@@ -57,14 +68,19 @@ namespace Game {
 
         private void FixedUpdate() {
             isGrounded = body.IsGrounded();
-            timeSinceJumped += Time.deltaTime;
+            timeSinceJumped += Time.fixedDeltaTime;
+
+            if(uncontrollable > 0f) {
+                uncontrollable -= Time.fixedDeltaTime;
+                return;
+            }
 
             if(!wantToJump) {
                 didStartJump = false;
             }
 
             if(isGrounded) {
-                if(wantToJump) {
+                if(wantToJump && timeSinceJumped > 0.2f) {
                     timeSinceJumped = 0f;
                     body.AddForce(new Vector3(inputHorizontal * CalculatedSpeed * horizontalJumpMultiplier, jumpStrength, 0), ForceMode.VelocityChange);
                     didStartJump = true;
@@ -88,7 +104,6 @@ namespace Game {
                         landSound.PlayAt(transform.position);
                 }
                 airbornTime = 0f;
-
             }
             else {
                 if(!didStartJump || (timeSinceJumped > holdDuration)) {

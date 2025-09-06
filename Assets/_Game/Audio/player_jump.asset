@@ -19,7 +19,7 @@ MonoBehaviour:
     bypassListenerEffects: 0
     bypassReverbZones: 0
     priority: 128
-    volume: 1
+    volume: 0.386
     pitch: 1
     stereoPan: 0
     spatialBlend: 0
@@ -56,10 +56,10 @@ MonoBehaviour:
       m_RotationOrder: 4
   clips:
     scriptables:
-    - {fileID: 7391849252999371704}
+    - {fileID: 6733410982877108304}
   poolingMode: 2
   poolingCount: 4
---- !u!114 &7391849252999371704
+--- !u!114 &6733410982877108304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
