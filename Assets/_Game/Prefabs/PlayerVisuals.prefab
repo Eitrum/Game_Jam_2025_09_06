@@ -843,6 +843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IdlePose
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11dd117cd2bc0264bae21018da8d5a53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4580248310578133332, guid: 11dd117cd2bc0264bae21018da8d5a53, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3361,15 +3365,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.x
-      value: -0.04199906
+      value: -0.04199901
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.y
-      value: -0.00000008154396
+      value: -0.00000010203132
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.z
-      value: 0.000000305239
+      value: 0.00000029683474
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.x
@@ -3397,15 +3401,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[5].m_Value.x
-      value: 0.031000951
+      value: 0.031001002
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[5].m_Value.y
-      value: 0.000000006792183
+      value: -0.00000001369518
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[5].m_Value.z
-      value: 0.00000041619433
+      value: 0.00000040779008
       objectReference: {fileID: 0}
     - target: {fileID: 713915237298811735, guid: b0c5946b89144e54e8ae3e8c8baf3f14, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[6].m_Value.x

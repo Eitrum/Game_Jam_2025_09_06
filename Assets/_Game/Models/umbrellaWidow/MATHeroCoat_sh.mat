@@ -74,7 +74,7 @@ Material:
     - _TessValue: 16
     - _UV2: 1
     - _UV4: 0
-    - _alphaOffset: 0.22
+    - _alphaOffset: 0.15
     - _alphaSharpness: 0.52
     - _baseMapAsColorRamp: 0
     - _bumpScale: 1

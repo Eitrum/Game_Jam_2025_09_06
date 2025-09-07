@@ -49,7 +49,7 @@ namespace Game {
 
             if(remainingCooldown <= 0) {
                 remainingCooldown = cooldown;
-                var go = Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation);
+                var go = Instantiate(projectilePrefab, transform.position + transform.forward, Quaternion.LookRotation((Player.Instance.transform.position + new Vector3(0, 1, 0)) - transform.position));
             }
         }
 

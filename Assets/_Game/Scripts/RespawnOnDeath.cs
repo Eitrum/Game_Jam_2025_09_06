@@ -15,6 +15,7 @@ namespace Game {
         private void OnDeath() {
             transform.position = Checkpoints.lastUsedCheckpoint.transform.position;
             health.Restore(true);
+            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         }
     }
 }

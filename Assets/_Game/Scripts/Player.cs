@@ -46,6 +46,8 @@ namespace Game {
         private IHealth health;
         private int jumps = 0;
 
+        public Animator animator;
+
         private Direction attackDirection = Direction.Right;
 
         public Direction AttackDirection => attackDirection;
@@ -55,6 +57,8 @@ namespace Game {
             body = GetComponent<Rigidbody>();
             health = GetComponent<IHealth>();
             health.OnHealthChanged += OnHealthChanged;
+            animator = GetComponentInChildren<Animator>();
+
             // body.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
@@ -68,6 +72,7 @@ namespace Game {
             inputHorizontal = Input.GetAxis("Horizontal");
             wantToJump = Input.GetKey(KeyCode.Space);
             sprinting = Input.GetKey(KeyCode.LeftShift);
+            animator.SetFloat("horizontal", Mathf.Abs(inputHorizontal));
         }
 
         private void FixedUpdate() {
@@ -93,6 +98,8 @@ namespace Game {
                 didStartJump = true;
                 if(jumpSound)
                     jumpSound.PlayAt(transform.position);
+
+                animator.SetTrigger("fall");
             }
 
             if(isGrounded) {
@@ -112,6 +119,9 @@ namespace Game {
                 if(airbornTime > 0.1f) {
                     if(landSound)
                         landSound.PlayAt(transform.position);
+                }
+                if(airbornTime > 0.2f) {
+                    animator.SetTrigger("land");
                 }
                 airbornTime = 0f;
             }

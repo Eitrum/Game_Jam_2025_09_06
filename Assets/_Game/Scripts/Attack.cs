@@ -29,10 +29,11 @@ namespace Game {
                 cooldown -= Time.deltaTime;
                 return;
             }
-            if(Input.GetKey(KeyCode.K)) {
+            if(Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.Mouse0)) {
                 cooldown = attackCooldown;
                 var attack = player.AttackDirection;
                 var attackVfxPosition = GetWorldLocationWithOffset(attack);
+                player.animator.SetTrigger("attack");
                 if(attackVfx)
                     Instantiate(attackVfx, attackVfxPosition, attack == Player.Direction.Right ? Quaternion.identity : Quaternion.Euler(0, 180, 0));
                 Timer.Once(attackDelay, () => DealDamage(attack));
