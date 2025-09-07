@@ -34,7 +34,7 @@ namespace Game {
                 var attack = player.AttackDirection;
                 var attackVfxPosition = GetWorldLocationWithOffset(attack);
                 if(attackVfx)
-                    Instantiate(attackVfx, attackVfxPosition, Quaternion.identity);
+                    Instantiate(attackVfx, attackVfxPosition, attack == Player.Direction.Right ? Quaternion.identity : Quaternion.Euler(0, 180, 0));
                 Timer.Once(attackDelay, () => DealDamage(attack));
             }
         }
