@@ -56,7 +56,7 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _DielectricSpecularRange: 0
-    - _Ease: -0.95
+    - _Ease: -0.695
     - _Ease1: 0
     - _EaseSecular: -0.39
     - _Float1: 0.2

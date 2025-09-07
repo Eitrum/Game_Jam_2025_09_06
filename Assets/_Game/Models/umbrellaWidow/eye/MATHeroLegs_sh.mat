@@ -91,7 +91,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     - _SpecularColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
-    - _baseMapTint: {r: 1, g: 0.4258333, b: 0.311, a: 0}
+    - _baseMapTint: {r: 1, g: 0.38214287, b: 0.3, a: 0}
     - _rampColor1: {r: 0, g: 0, b: 0, a: 0}
     - _rampColor2: {r: 0.682127, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
