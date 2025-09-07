@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdbceb1d787d244fb4e7ff966eb24b3, type: 3}
   m_Name: player_jump
   m_EditorClassIdentifier: 
-  settingsPreset: {fileID: 0}
+  settingsPreset: {fileID: 11400000, guid: e1770f37793f8724fa4fb38077dbea2b, type: 2}
   settings:
     output: {fileID: 0}
     bypassEffects: 0

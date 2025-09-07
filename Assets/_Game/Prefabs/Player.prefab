@@ -113,6 +113,8 @@ GameObject:
   - component: {fileID: 1911672045936577038}
   - component: {fileID: 8444908104074834103}
   - component: {fileID: 4385092483012628200}
+  - component: {fileID: 249848450011009750}
+  - component: {fileID: -1503709788348206969}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -202,6 +204,7 @@ MonoBehaviour:
   speed: 8
   acceleration: 40
   sprintSpeed: 12
+  maxJumps: 2
   jumpStrength: 12
   horizontalJumpMultiplier: 0.5
   holdDuration: 0.2
@@ -306,6 +309,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerType: 0
+--- !u!114 &249848450011009750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9052925007283046973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d4f4b18ac214d4682af96b0cea459c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1503709788348206969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9052925007283046973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7b2e15bef641b4f9344f6aacd1ee09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityName: 
+  type: 1
 --- !u!1001 &820967954103090839
 PrefabInstance:
   m_ObjectHideFlags: 0

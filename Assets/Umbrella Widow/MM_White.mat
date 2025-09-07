@@ -21,19 +21,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MM_White
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: 6f31f249f37842d498d7783b20392a7c, type: 2}
+  m_Shader: {fileID: 4800000, guid: 8450d8b2fc19daa408d2c52f2bdbb992, type: 3}
+  m_Parent: {fileID: 2100000, guid: 641997691384c424d8016959242b0f42, type: 2}
   m_ModifiedSerializedProperties: 10
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _UV2_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -53,6 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Cull: 0
+    - _QueueControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
