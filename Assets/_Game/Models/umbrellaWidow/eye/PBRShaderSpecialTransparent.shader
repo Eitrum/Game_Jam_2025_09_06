@@ -1,6 +1,6 @@
 // Made with Amplify Shader Editor v1.9.9.4
 // Available at the Unity Asset Store - http://u3d.as/y3X 
-Shader "PBRShaderSpecial"
+Shader "PBRShaderSpecialTransparent"
 {
 	Properties
 	{
@@ -26,7 +26,8 @@ Shader "PBRShaderSpecial"
 		_rampColor2( "rampColor2", Color ) = ( 0.682127, 0, 1, 0 )
 		_rampColor1( "rampColor1", Color ) = ( 0, 0, 0, 0 )
 		_FresMult( "FresMult", Float ) = 8
-		_clipThreshold( "clipThreshold", Float ) = 0.01
+		_alphaOffset( "alphaOffset", Float ) = 0
+		_alphaSharpness( "alphaSharpness", Float ) = 0
 
 
 		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
@@ -55,7 +56,7 @@ Shader "PBRShaderSpecial"
 
 		
 
-		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Geometry" "UniversalMaterialType"="Unlit" }
+		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Transparent" "Queue"="Transparent" "UniversalMaterialType"="Unlit" }
 
 		Cull Off
 		AlphaToMask Off
@@ -184,8 +185,8 @@ Shader "PBRShaderSpecial"
 			Name "Forward"
 			Tags { "LightMode"="UniversalForwardOnly" }
 
-			Blend One Zero, One Zero
-			ZWrite On
+			Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
+			ZWrite Off
 			ZTest LEqual
 			Offset 0 , 0
 			ColorMask RGBA
@@ -194,12 +195,12 @@ Shader "PBRShaderSpecial"
 
 			HLSLPROGRAM
 
-			#define _ALPHATEST_ON 1
 			#pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
 			#pragma multi_compile_instancing
 			#pragma instancing_options renderinglayer
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#define ASE_FOG 1
+			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define ASE_VERSION 19904
 			#define ASE_SRP_VERSION 170100
 
@@ -315,7 +316,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -649,12 +651,12 @@ Shader "PBRShaderSpecial"
 				float SpecularPower14_g61170 = exp2( ( ( 0.0 * 10.0 ) + 1.0 ) );
 				float3 specularFinalColor42_g61170 = ( AttenuationColor8_g61170 * pow( max( dotResult32_g61170 , 0.0 ) , SpecularPower14_g61170 ) * 0.0 );
 				float3 temp_output_152_0 = ( DiffuseColor70_g61170 + specularFinalColor42_g61170 );
-				float temp_output_6_0_g61175 =  (-1.0 + ( saturate( ( length( temp_output_152_0 ) - _offsetLight ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
-				float temp_output_7_0_g61174 = _Ease;
-				float clampResult65_g61174 = clamp( temp_output_7_0_g61174 , 0.0 , 1.0 );
-				float lerpResult62_g61174 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61174 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61174 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61174 ));
+				float temp_output_6_0_g61179 =  (-1.0 + ( saturate( ( length( temp_output_152_0 ) - _offsetLight ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
+				float temp_output_7_0_g61178 = _Ease;
+				float clampResult65_g61178 = clamp( temp_output_7_0_g61178 , 0.0 , 1.0 );
+				float lerpResult62_g61178 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61178 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61178 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61178 ));
 				float3 normalizeResult174 = ASESafeNormalize( temp_output_152_0 );
-				float3 dirLight129 = (  (0.0 + ( ( sign( temp_output_6_0_g61175 ) * pow( abs( temp_output_6_0_g61175 ) , lerpResult62_g61174 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult174 );
+				float3 dirLight129 = (  (0.0 + ( ( sign( temp_output_6_0_g61179 ) * pow( abs( temp_output_6_0_g61179 ) , lerpResult62_g61178 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult174 );
 				float3 WorldPosition288_g61171 = PositionWS;
 				float3 WorldPosition339_g61171 = WorldPosition288_g61171;
 				float2 ScreenUV286_g61171 = (ScreenPosNorm).xy;
@@ -686,12 +688,12 @@ Shader "PBRShaderSpecial"
 				float SpecularPower14_g61173 = exp2( ( ( _specularSize * 10.0 ) + 1.0 ) );
 				float3 specularFinalColor42_g61173 = ( AttenuationColor8_g61173 * pow( max( dotResult32_g61173 , 0.0 ) , SpecularPower14_g61173 ) * _specularIntensity );
 				float3 temp_output_120_0 = ( DiffuseColor70_g61173 + specularFinalColor42_g61173 );
-				float temp_output_6_0_g61179 =  (-1.0 + ( saturate( length( temp_output_120_0 ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
-				float temp_output_7_0_g61178 = _EaseSecular;
-				float clampResult65_g61178 = clamp( temp_output_7_0_g61178 , 0.0 , 1.0 );
-				float lerpResult62_g61178 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61178 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61178 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61178 ));
+				float temp_output_6_0_g61181 =  (-1.0 + ( saturate( length( temp_output_120_0 ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
+				float temp_output_7_0_g61180 = _EaseSecular;
+				float clampResult65_g61180 = clamp( temp_output_7_0_g61180 , 0.0 , 1.0 );
+				float lerpResult62_g61180 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61180 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61180 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61180 ));
 				float3 normalizeResult164 = ASESafeNormalize( temp_output_120_0 );
-				float3 specular128 = (  (0.0 + ( ( sign( temp_output_6_0_g61179 ) * pow( abs( temp_output_6_0_g61179 ) , lerpResult62_g61178 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult164 );
+				float3 specular128 = (  (0.0 + ( ( sign( temp_output_6_0_g61181 ) * pow( abs( temp_output_6_0_g61181 ) , lerpResult62_g61180 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult164 );
 				float fresnelNdotV183 = dot( NormalWS, ViewDirWS );
 				float fresnelNode183 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV183, 5.0 ) );
 				float3 tanNormal135 = NormalMap34;
@@ -711,12 +713,14 @@ Shader "PBRShaderSpecial"
 				float4 temp_output_186_0 = ( ( ( BaseColor60 * float4( temp_output_134_0 , 0.0 ) ) + float4( saturate( specular128 ) , 0.0 ) ) + lerpResult192 + Emission62 );
 				
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
 				float3 Color = temp_output_186_0.rgb;
-				float Alpha = alpha45;
-				float AlphaClipThreshold = _clipThreshold;
+				float Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 
 				#if defined( ASE_DEPTH_WRITE_ON )
@@ -792,10 +796,10 @@ Shader "PBRShaderSpecial"
 
 			HLSLPROGRAM
 
-			#define _ALPHATEST_ON 1
 			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#define ASE_FOG 1
+			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define ASE_VERSION 19904
 			#define ASE_SRP_VERSION 170100
 
@@ -866,7 +870,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1057,10 +1062,12 @@ Shader "PBRShaderSpecial"
 				#endif
 				float2 UV50 = staticSwitch51;
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 
-				float Alpha = alpha45;
-				float AlphaClipThreshold = _clipThreshold;
+				float Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 
 				#if defined( ASE_DEPTH_WRITE_ON )
@@ -1101,10 +1108,10 @@ Shader "PBRShaderSpecial"
 
 			HLSLPROGRAM
 
-			#define _ALPHATEST_ON 1
 			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#define ASE_FOG 1
+			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define ASE_VERSION 19904
 			#define ASE_SRP_VERSION 170100
 
@@ -1169,7 +1176,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1325,10 +1333,12 @@ Shader "PBRShaderSpecial"
 				#endif
 				float2 UV50 = staticSwitch51;
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 
-				float Alpha = alpha45;
-				float AlphaClipThreshold = _clipThreshold;
+				float Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				float AlphaClipThreshold = 0.5;
 
 				#if defined( ASE_DEPTH_WRITE_ON )
 					float DeviceDepth = input.positionCS.z;
@@ -1363,8 +1373,8 @@ Shader "PBRShaderSpecial"
 
 			HLSLPROGRAM
 
-			#define _ALPHATEST_ON 1
 			#define ASE_FOG 1
+			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define ASE_VERSION 19904
 			#define ASE_SRP_VERSION 170100
 
@@ -1427,7 +1437,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1585,10 +1596,12 @@ Shader "PBRShaderSpecial"
 				#endif
 				float2 UV50 = staticSwitch51;
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 
-				surfaceDescription.Alpha = alpha45;
-				surfaceDescription.AlphaClipThreshold = _clipThreshold;
+				surfaceDescription.Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
 					float alphaClipThreshold = 0.01f;
@@ -1615,8 +1628,8 @@ Shader "PBRShaderSpecial"
 
 			HLSLPROGRAM
 
-			#define _ALPHATEST_ON 1
 			#define ASE_FOG 1
+			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define ASE_VERSION 19904
 			#define ASE_SRP_VERSION 170100
 
@@ -1684,7 +1697,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -1841,10 +1855,12 @@ Shader "PBRShaderSpecial"
 				#endif
 				float2 UV50 = staticSwitch51;
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 
-				surfaceDescription.Alpha = alpha45;
-				surfaceDescription.AlphaClipThreshold = _clipThreshold;
+				surfaceDescription.Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
 					float alphaClipThreshold = 0.01f;
@@ -1875,10 +1891,10 @@ Shader "PBRShaderSpecial"
 
 			HLSLPROGRAM
 
-        	#define _ALPHATEST_ON 1
         	#pragma multi_compile_instancing
         	#pragma multi_compile _ LOD_FADE_CROSSFADE
         	#define ASE_FOG 1
+        	#define _SURFACE_TYPE_TRANSPARENT 1
         	#define ASE_VERSION 19904
         	#define ASE_SRP_VERSION 170100
 
@@ -1960,7 +1976,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -2148,10 +2165,12 @@ Shader "PBRShaderSpecial"
 				#endif
 				float2 UV50 = staticSwitch51;
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 
-				float Alpha = alpha45;
-				float AlphaClipThreshold = _clipThreshold;
+				float Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				float AlphaClipThreshold = 0.5;
 
 				#if defined( ASE_DEPTH_WRITE_ON )
 					float DeviceDepth = input.positionCS.z;
@@ -2197,9 +2216,9 @@ Shader "PBRShaderSpecial"
 
 			HLSLPROGRAM
 
-			#define _ALPHATEST_ON 1
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#define ASE_FOG 1
+			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define ASE_VERSION 19904
 			#define ASE_SRP_VERSION 170100
 
@@ -2283,7 +2302,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -2397,10 +2417,12 @@ Shader "PBRShaderSpecial"
 				#endif
 				float2 UV50 = staticSwitch51;
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 
-				float Alpha = alpha45;
-				float AlphaClipThreshold = _clipThreshold;
+				float Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				float AlphaClipThreshold = 0.5;
 
 				#if defined( ASE_DEPTH_WRITE_ON )
 					float DeviceDepth = input.positionCS.z;
@@ -2441,8 +2463,8 @@ Shader "PBRShaderSpecial"
 			Name "GBuffer"
 			Tags { "LightMode"="UniversalGBuffer" }
 
-			Blend One Zero, One Zero
-			ZWrite On
+			Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
+			ZWrite Off
 			ZTest LEqual
 			Offset 0 , 0
 			ColorMask RGBA
@@ -2453,9 +2475,9 @@ Shader "PBRShaderSpecial"
 
 			
 
-			#define _ALPHATEST_ON 1
 			#pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
 			#define ASE_FOG 1
+			#define _SURFACE_TYPE_TRANSPARENT 1
 			#define ASE_VERSION 19904
 			#define ASE_SRP_VERSION 170100
 
@@ -2588,7 +2610,8 @@ Shader "PBRShaderSpecial"
 			float _smoothness;
 			float _indirectLight;
 			float _indirectLightBaseTint;
-			float _clipThreshold;
+			float _alphaOffset;
+			float _alphaSharpness;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -2920,12 +2943,12 @@ Shader "PBRShaderSpecial"
 				float SpecularPower14_g61170 = exp2( ( ( 0.0 * 10.0 ) + 1.0 ) );
 				float3 specularFinalColor42_g61170 = ( AttenuationColor8_g61170 * pow( max( dotResult32_g61170 , 0.0 ) , SpecularPower14_g61170 ) * 0.0 );
 				float3 temp_output_152_0 = ( DiffuseColor70_g61170 + specularFinalColor42_g61170 );
-				float temp_output_6_0_g61175 =  (-1.0 + ( saturate( ( length( temp_output_152_0 ) - _offsetLight ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
-				float temp_output_7_0_g61174 = _Ease;
-				float clampResult65_g61174 = clamp( temp_output_7_0_g61174 , 0.0 , 1.0 );
-				float lerpResult62_g61174 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61174 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61174 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61174 ));
+				float temp_output_6_0_g61179 =  (-1.0 + ( saturate( ( length( temp_output_152_0 ) - _offsetLight ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
+				float temp_output_7_0_g61178 = _Ease;
+				float clampResult65_g61178 = clamp( temp_output_7_0_g61178 , 0.0 , 1.0 );
+				float lerpResult62_g61178 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61178 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61178 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61178 ));
 				float3 normalizeResult174 = ASESafeNormalize( temp_output_152_0 );
-				float3 dirLight129 = (  (0.0 + ( ( sign( temp_output_6_0_g61175 ) * pow( abs( temp_output_6_0_g61175 ) , lerpResult62_g61174 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult174 );
+				float3 dirLight129 = (  (0.0 + ( ( sign( temp_output_6_0_g61179 ) * pow( abs( temp_output_6_0_g61179 ) , lerpResult62_g61178 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult174 );
 				float3 WorldPosition288_g61171 = PositionWS;
 				float3 WorldPosition339_g61171 = WorldPosition288_g61171;
 				float2 ScreenUV286_g61171 = (ScreenPosNorm).xy;
@@ -2957,12 +2980,12 @@ Shader "PBRShaderSpecial"
 				float SpecularPower14_g61173 = exp2( ( ( _specularSize * 10.0 ) + 1.0 ) );
 				float3 specularFinalColor42_g61173 = ( AttenuationColor8_g61173 * pow( max( dotResult32_g61173 , 0.0 ) , SpecularPower14_g61173 ) * _specularIntensity );
 				float3 temp_output_120_0 = ( DiffuseColor70_g61173 + specularFinalColor42_g61173 );
-				float temp_output_6_0_g61179 =  (-1.0 + ( saturate( length( temp_output_120_0 ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
-				float temp_output_7_0_g61178 = _EaseSecular;
-				float clampResult65_g61178 = clamp( temp_output_7_0_g61178 , 0.0 , 1.0 );
-				float lerpResult62_g61178 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61178 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61178 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61178 ));
+				float temp_output_6_0_g61181 =  (-1.0 + ( saturate( length( temp_output_120_0 ) ) - 0.0 ) * ( 1.0 - -1.0 ) / ( 1.0 - 0.0 ) );
+				float temp_output_7_0_g61180 = _EaseSecular;
+				float clampResult65_g61180 = clamp( temp_output_7_0_g61180 , 0.0 , 1.0 );
+				float lerpResult62_g61180 = lerp( ( 1.0 + min( 0.0 , temp_output_7_0_g61180 ) ) , ( 1.0 / max( ( 1.0 - max( temp_output_7_0_g61180 , 0.0 ) ) , 1E-06 ) ) , ceil( clampResult65_g61180 ));
 				float3 normalizeResult164 = ASESafeNormalize( temp_output_120_0 );
-				float3 specular128 = (  (0.0 + ( ( sign( temp_output_6_0_g61179 ) * pow( abs( temp_output_6_0_g61179 ) , lerpResult62_g61178 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult164 );
+				float3 specular128 = (  (0.0 + ( ( sign( temp_output_6_0_g61181 ) * pow( abs( temp_output_6_0_g61181 ) , lerpResult62_g61180 ) ) - -1.0 ) * ( 1.0 - 0.0 ) / ( 1.0 - -1.0 ) ) * normalizeResult164 );
 				float fresnelNdotV183 = dot( NormalWS, ViewDirWS );
 				float fresnelNode183 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV183, 5.0 ) );
 				float3 tanNormal135 = NormalMap34;
@@ -2982,11 +3005,13 @@ Shader "PBRShaderSpecial"
 				float4 temp_output_186_0 = ( ( ( BaseColor60 * float4( temp_output_134_0 , 0.0 ) ) + float4( saturate( specular128 ) , 0.0 ) ) + lerpResult192 + Emission62 );
 				
 				float alpha45 = tex2D( _alpha, UV50 ).r;
+				float temp_output_1_0_g61182 = _alphaOffset;
+				float temp_output_1_0_g61183 = temp_output_1_0_g61182;
 				
 
 				float3 Color = temp_output_186_0.rgb;
-				float Alpha = alpha45;
-				float AlphaClipThreshold = _clipThreshold;
+				float Alpha = saturate( ( ( alpha45 - temp_output_1_0_g61183 ) / ( ( temp_output_1_0_g61182 + ( 1.0 - _alphaSharpness ) ) - temp_output_1_0_g61183 ) ) );
+				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 
 				#if defined( ASE_DEPTH_WRITE_ON )
@@ -3067,7 +3092,7 @@ Node;AmplifyShaderEditor.SaturateNode, AmplifyShaderEditor, Version=0.0.0.0, Cul
 Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;120;-1184,192;Inherit;False;BlinnPhongLightWrap;-1;;61173;139fed909c1bc1a42a96c42d8cf09006;0;5;1;FLOAT3;0,0,0;False;4;FLOAT3;0,0,0;False;2;FLOAT;0;False;3;FLOAT;0;False;44;FLOAT;0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;96;-1504,-768;Inherit;False;EaseInEaseOutInv;-1;;61176;09ec94755445510468dd361825c77218;0;2;18;FLOAT;0;False;7;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.NormalizeNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;117;-1456,-576;Inherit;False;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;111;-1216,-224;Inherit;False;EaseInEaseOutInv;-1;;61174;09ec94755445510468dd361825c77218;0;2;18;FLOAT;0;False;7;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;111;-1216,-224;Inherit;False;EaseInEaseOutInv;-1;;61178;09ec94755445510468dd361825c77218;0;2;18;FLOAT;0;False;7;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;39;-3312,-1200;Inherit;False;50;UV;1;0;OBJECT;;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;137;-1264,544;Inherit;False;34;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;138;-1120,656;Inherit;False;34;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
@@ -3089,7 +3114,7 @@ Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;59;-2733.806,-1142.355;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT3;0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;171;-2704,-1552;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;147;-560,640;Inherit;False;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;166;-560,96;Inherit;False;EaseInEaseOutInv;-1;;61178;09ec94755445510468dd361825c77218;0;2;18;FLOAT;0;False;7;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;166;-560,96;Inherit;False;EaseInEaseOutInv;-1;;61180;09ec94755445510468dd361825c77218;0;2;18;FLOAT;0;False;7;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;129;-848,-224;Inherit;False;dirLight;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.NormalizeNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;164;-896,240;Inherit;False;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;14;-3187.74,642.9435;Inherit;False;849.9143;452.8536;;4;62;31;29;26;Emission;1,1,1,1;0;0
@@ -3110,6 +3135,7 @@ Node;AmplifyShaderEditor.ColorNode, AmplifyShaderEditor, Version=0.0.0.0, Cultur
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;191;144,-736;Inherit;False;129;dirLight;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;128;96,224;Inherit;False;specular;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;180;-256,-480;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;56;-4371.509,-262.0515;Inherit;False;50;UV;1;0;OBJECT;;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.FresnelNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;183;304,-912;Inherit;False;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;5;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;184;336,-992;Inherit;False;60;BaseColor;1;0;OBJECT;;False;1;COLOR;0
 Node;AmplifyShaderEditor.LengthOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;187;320,-736;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT;0
@@ -3122,20 +3148,23 @@ Node;AmplifyShaderEditor.RangedFloatNode, AmplifyShaderEditor, Version=0.0.0.0, 
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;31;-2726.564,774.7975;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;133;400,-240;Inherit;False;128;specular;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.SimpleAddOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;134;-80,-400;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;56;-4371.509,-262.0515;Inherit;False;50;UV;1;0;OBJECT;;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.SamplerNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;58;-4032,-288;Inherit;True;Property;_alpha;alpha;12;0;Create;True;0;0;0;False;0;False;-1;None;b001ce25bba6b4f4c88b9ead07d5a073;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;False;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;185;638.9452,-918.8168;Inherit;False;4;4;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.OneMinusNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;190;192,-304;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;156;112,-496;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT3;0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;195;896,-608;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;62;-2561.825,773.7625;Inherit;False;Emission;-1;True;1;0;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SaturateNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;201;583.9314,-191.3896;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.SamplerNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;58;-4032,-288;Inherit;True;Property;_alpha;alpha;12;0;Create;True;0;0;0;False;0;False;-1;None;b001ce25bba6b4f4c88b9ead07d5a073;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;False;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;45;-3664,-240;Inherit;False;alpha;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;222;1136,-96;Inherit;False;Property;_alphaSharpness;alphaSharpness;28;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;157;896,-336;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT3;0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.LerpOp, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;192;1104,-592;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;199;848,-112;Inherit;False;62;Emission;1;0;OBJECT;;False;1;COLOR;0
 Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;13;-3222.723,-866.8974;Inherit;False;992.1392;449.216;;6;48;46;44;37;35;207;Metallic;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;15;-3216.127,99.466;Inherit;False;809.1478;367.4147;;5;36;30;28;27;25;Occlusion;1,1,1,1;0;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;45;-3664,-240;Inherit;False;alpha;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;197;1280,-256;Inherit;False;45;alpha;1;0;OBJECT;;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;220;1280,-176;Inherit;False;Property;_alphaOffset;alphaOffset;27;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;221;1312,-96;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;186;1184,-384;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.ColorNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;211;1056,-864;Inherit;False;Constant;_Color0;Color 0;28;0;Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.SamplerNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;25;-3114.831,149.466;Inherit;True;Property;_OcclusionMap;OcclusionMap;8;1;[Header];Create;True;1;Occlusion;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;False;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
@@ -3155,12 +3184,11 @@ Node;AmplifyShaderEditor.RegisterLocalVarNode, AmplifyShaderEditor, Version=0.0.
 Node;AmplifyShaderEditor.RangedFloatNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;207;-2912,-432;Inherit;False;Property;_roughnessRemapHigh;roughnessRemapHigh;5;0;Create;True;0;0;0;False;0;False;1;0.74;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;46;-2912,-496;Inherit;False;Property;_roughnessRemapLow;roughnessRemapLow;4;0;Create;True;0;0;0;False;0;False;0;0.74;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TFHCRemapNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;208;-2624,-576;Inherit;False;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;0;False;4;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.GetLocalVarNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;197;1392,-368;Inherit;False;45;alpha;1;0;OBJECT;;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;198;1392,-272;Inherit;False;Property;_clipThreshold;clipThreshold;27;0;Create;True;0;0;0;False;0;False;0.01;0.01;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SwitchByFaceNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;213;1360,-656;Inherit;False;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.NegateNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;216;1328,64;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.SwitchByFaceNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;215;1472,16;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.NormalVertexDataNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;214;1088,-64;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.NegateNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;216;1312,176;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.NormalVertexDataNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;214;1072,48;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SwitchByFaceNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;215;1456,128;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.FunctionNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;219;1472,-224;Inherit;False;Dissolve;-1;;61182;77ac229497b1a774e88b6337c15e4d46;0;3;5;FLOAT;0;False;1;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;2;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;3;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;4;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;False;0;;0;0;Standard;0;False;0
@@ -3171,9 +3199,9 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Versi
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;9;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthNormalsOnly;0;9;DepthNormalsOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormalsOnly;False;True;9;d3d11;metal;vulkan;xboxone;xboxseries;playstation;ps4;ps5;switch;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;10;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;MotionVectors;0;10;MotionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;False;False;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=MotionVectors;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;11;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;XRMotionVectors;0;11;XRMotionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;True;1;False;;255;False;;1;False;;7;False;;3;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;1;LightMode=XRMotionVectors;False;False;0;;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;12;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;GBuffer;0;12;GBuffer;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalGBuffer;False;False;0;;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;12;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;GBuffer;0;12;GBuffer;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalGBuffer;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;0;1184,-928;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;1;1744,-384;Float;False;True;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;PBRShaderSpecial;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;9;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;2;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForwardOnly;False;False;0;;0;0;Standard;30;Surface;0;0;  Keep Alpha;0;0;  Blend;0;0;Two Sided;0;638928495206443956;Alpha Clipping;1;0;  Use Shadow Threshold;0;0;Forward Only;0;0;Cast Shadows;1;0;Receive Shadows;1;0;Receive SSAO;1;0;Motion Vectors;1;0;  Add Precomputed Velocity;0;0;  XR Motion Vectors;0;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position;1;0;0;13;False;True;True;True;False;False;True;True;True;False;True;False;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode, AmplifyShaderEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;1;1808,-384;Float;False;True;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;13;PBRShaderSpecialTransparent;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;9;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;2;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForwardOnly;False;False;0;;0;0;Standard;30;Surface;1;638928546862546020;  Keep Alpha;0;0;  Blend;0;0;Two Sided;0;638928495206443956;Alpha Clipping;0;638928547739928227;  Use Shadow Threshold;0;0;Forward Only;0;0;Cast Shadows;1;0;Receive Shadows;1;0;Receive SSAO;1;0;Motion Vectors;1;0;  Add Precomputed Velocity;0;0;  XR Motion Vectors;0;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position;1;0;0;13;False;True;True;True;False;False;True;True;True;False;True;False;True;False;;False;0
 WireConnection;32;1;40;0
 WireConnection;32;5;57;0
 WireConnection;34;0;32;0
@@ -3242,6 +3270,7 @@ WireConnection;31;0;26;0
 WireConnection;31;1;29;0
 WireConnection;134;0;180;0
 WireConnection;134;1;181;0
+WireConnection;58;1;56;0
 WireConnection;185;0;184;0
 WireConnection;185;1;183;0
 WireConnection;185;2;187;0
@@ -3254,13 +3283,13 @@ WireConnection;195;1;193;0
 WireConnection;195;2;196;0
 WireConnection;62;0;31;0
 WireConnection;201;0;133;0
-WireConnection;58;1;56;0
+WireConnection;45;0;58;1
 WireConnection;157;0;156;0
 WireConnection;157;1;201;0
 WireConnection;192;0;185;0
 WireConnection;192;1;195;0
 WireConnection;192;2;190;0
-WireConnection;45;0;58;1
+WireConnection;221;0;222;0
 WireConnection;186;0;157;0
 WireConnection;186;1;192;0
 WireConnection;186;2;199;0
@@ -3283,9 +3312,11 @@ WireConnection;213;1;211;0
 WireConnection;216;0;214;0
 WireConnection;215;0;214;0
 WireConnection;215;1;216;0
+WireConnection;219;5;197;0
+WireConnection;219;1;220;0
+WireConnection;219;4;221;0
 WireConnection;1;2;186;0
-WireConnection;1;3;197;0
-WireConnection;1;4;198;0
+WireConnection;1;3;219;0
 WireConnection;1;6;215;0
 ASEEND*/
-//CHKSM=D7BE60C274856102206C2DBEC7C22E8554C1F92E
+//CHKSM=03A6923E3C5B3F6A584CCB0DF252594EB1EA8F51

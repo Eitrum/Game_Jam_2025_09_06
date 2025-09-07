@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MATHeroLegs_sh
-  m_Shader: {fileID: 4800000, guid: 8450d8b2fc19daa408d2c52f2bdbb992, type: 3}
+  m_Name: MATHeroCoat_sh
+  m_Shader: {fileID: 4800000, guid: d5ea6d5c829c1a94899fd140570d9914, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _alpha:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 68b5e92f7a99d5c428346d9fb59dd495, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -56,12 +56,12 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _DielectricSpecularRange: 0
-    - _Ease: 0
+    - _Ease: -0.262
     - _Ease1: 0
-    - _EaseSecular: 0
+    - _EaseSecular: 0.16
     - _Float1: 0.2
     - _Float4: 0.1
-    - _FresMult: 8
+    - _FresMult: 1.51
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -74,24 +74,26 @@ Material:
     - _TessValue: 16
     - _UV2: 1
     - _UV4: 0
+    - _alphaOffset: 0.22
+    - _alphaSharpness: 0.52
     - _baseMapAsColorRamp: 0
     - _bumpScale: 1
-    - _clipThreshold: 0.01
+    - _clipThreshold: 0
     - _gloss: 0.55
-    - _indirectLight: 0.798
+    - _indirectLight: 1
     - _indirectLightBaseTint: 1
     - _mainLight_offset: 0
-    - _offsetLight: -0.52
-    - _smoothness: 0
+    - _offsetLight: -0.06
+    - _smoothness: 0.95
     - _specular: 7.33
-    - _specularIntensity: 0.29
+    - _specularIntensity: 0.12
     - _specularSaturation: 0
-    - _specularSize: 0.31
+    - _specularSize: 0.08
     m_Colors:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     - _SpecularColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
-    - _baseMapTint: {r: 1, g: 0.38214287, b: 0.3, a: 0}
+    - _baseMapTint: {r: 0.142, g: 0.142, b: 0.142, a: 0}
     - _rampColor1: {r: 0, g: 0, b: 0, a: 0}
     - _rampColor2: {r: 0.682127, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
