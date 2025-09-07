@@ -96,7 +96,7 @@ Material:
     - _specularIntensity: 2.15
     - _specularSize: 1.05
     m_Colors:
-    - _EmissionColor: {r: 0.95, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1.9, g: 0, b: 0, a: 1}
     - _baseMapTint: {r: 1, g: 1, b: 1, a: 0}
     - _rampColor1: {r: 0, g: 0, b: 0, a: 0}
     - _rampColor2: {r: 0.682127, g: 0, b: 1, a: 0}
