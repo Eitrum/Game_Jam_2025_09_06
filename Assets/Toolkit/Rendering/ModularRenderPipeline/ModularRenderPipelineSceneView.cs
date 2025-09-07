@@ -21,7 +21,9 @@ namespace Toolkit.Rendering.ModularRenderPipeline {
         #region Draw
 
         public static void Draw(in ScriptableRenderContext context, Camera c) {
+#if UNITY_EDITOR
             ScriptableRenderContext.EmitWorldGeometryForSceneView(c);
+#endif
             // Setup command buffer
             ScriptableCullingParameters cullingParams;
             if(!c.TryGetCullingParameters(out cullingParams))
