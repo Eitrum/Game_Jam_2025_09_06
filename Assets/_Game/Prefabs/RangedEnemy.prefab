@@ -78,6 +78,8 @@ MonoBehaviour:
   speed: 4
   currentTarget: {x: 0, y: 0, z: 0}
   walkingTowardsEnd: 0
+  SpeedMultiplier: 1
+  RotateTowardsMovement: 1
 --- !u!114 &6617246433602837835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth:
-    value: 1
+    value: 3
     increased: 0
     more: 0
   current: 0
